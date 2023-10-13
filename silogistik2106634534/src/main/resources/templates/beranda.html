@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
+          integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <object th:include="~{fragments/common :: js}" th:remove="tag"></object>
+  <object th:include="~{fragments/common :: css}" th:remove="tag"></object>
+  <title>Beranda</title>
+
+  <style>
+    /* Custom styles for the button */
+    .btn {
+        width: 200px; /* Set the desired width */
+        height: 200px; /* Set the desired height */
+        font-size: 1rem; /* Set the desired font size */
+    }
+</style>
+</head>
+
+<body>
+  <nav th:replace="~{fragments/navbar :: navbar(activePage='beranda')}"></nav>
+  <div class="container text-center">
+    <img th:src="@{/images/logistics_logo.jpg}" alt="logo_logistik" style="margin-top: 5px;" th:width="300">
+    <br>
+    <h3>SILOGISTIK</h3>
+    <div class="row pt-5 pb-2">
+        
+        <div class="col">
+            <div class="card text-center" style="background-color:#0d6efd;color: white;opacity:100%;">
+              <div class="card-body">
+                <h5 class="card-title">Barang</h5>
+                <h4 class="card-text" th:text="${banyakBarang}"></h4>
+                <h7 class="card-title">barang</h7>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card text-center" style="background-color:#0d6efd;color: white;opacity:75%;">
+              <div class="card-body">
+                <h5 class="card-title">Permintaan pengiriman</h5>
+                <h4 class="card-text" th:text="${banyakPermintaanPengiriman}"></h4>
+                <h7 class="card-title">permintaan pengiriman</h7>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card text-center" style="background-color:#0d6efd;color: white;opacity: 50%;">
+              <div class="card-body">
+                <h5 class="card-title">Gudang</h5>
+                <h4 class="card-text" th:text="${banyakGudang}"></h4>
+                <h7 class="card-title">gudang</h7>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card text-center" style="background-color:#0d6efd;color: white;opacity: 25%;">
+              <div class="card-body">
+                <h5 class="card-title">Karyawan</h5>
+                <h4 class="card-text" th:text="${banyakKaryawan}"></h4>
+                <h7 class="card-title">karyawan</h7>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <object th:include="~{fragments/common :: js}" th:remove="tag"></object>
+  <object th:include="~{fragments/common :: css}" th:remove="tag"></object>
+  <title>Cari Barang</title>
+</head>
+
+<body>
+<nav th:replace="~{fragments/navbar :: navbar(activePage='gudang')}"></nav>
+  <div class="container">
+    <div class="text-center pt-5">
+      <h2>Cari Barang</h2>
+    </div>
+    <div class="row justify-content-center m-2">
+      <div class="container">
+              <form th:action="@{/gudang/cari-barang}" method="GET" >
+                  <select class="form-control" name="sku" th:object = "${listAllGudangBarang}">
+                      <option th:each="gudangBarang: ${listAllGudangBarang}"
+                              th:value="${gudangBarang.barang.sku}"
+                              th:text="${gudangBarang.barang.merkBarang}"
+                              th:selected="${gudangBarang.barang.sku == sku}"
+                      ></option>
+                  </select>
+                  <button class="btn btn-primary mt-3" type="submit">Search</button>
+              </form>
+      </div>
+    </div>
+    <table class="table">
+        <thead class="table-dark">
+            <tr class="text-center">
+                <th>#</th>
+                <th>Nama</th>
+                <th>Alamat Gudang</th>
+                <th>Stok</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="text-center" th:each="barangGudang, iterationStatus : ${listGudangBarangDicari}">
+                <td th:text="${iterationStatus.count}" style="font-weight: bold"></td>
+                <td><a th:text="${barangGudang.gudang.namaGudang}" th:href="@{/gudang/{id}(id=${barangGudang.gudang.idGudang})}" style="font-weight: bold"></a></td>
+                <td th:text="${barangGudang.gudang.alamatGudang}" style="font-weight: bold"></td>
+                <td th:text="${barangGudang.stokBarang}" style="font-weight: bold"></td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+</body>
+
+</html>

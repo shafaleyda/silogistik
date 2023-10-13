@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+    <object th:include="~{fragments/common :: js}" th:remove="tag"></object>
+    <object th:include="~{fragments/common :: css}" th:remove="tag"></object>
+    <title>Form Tambah Barang</title>
+</head>
+
+<body>
+  <nav th:replace="~{fragments/navbar :: navbar(activePage='barang')}"></nav>
+  <div class="container">
+    <div class="card m-4 p-4">
+      <div class="card-body">
+        <div class="justify-content-center">
+          <h2>Tambah Barang</h2>
+          <br>
+          <form th:action="@{/barang/tambah}" th:object="${barangDTO}" method="POST">
+            Merk Barang: <br>
+            <input class="form-control" type="text" th:field="*{merkBarang}"/>
+            <br><br>
+            <span class="error-message" th:if="${#fields.hasErrors('merkBarang')}" th:errors="*{merkBarang}" th:text="${errorMessage}"></span>
+
+            Tipe Barang: <br>
+            <select class="form-control" name="tipeBarang" id="tipeBarang" th:field="*{tipeBarang}">
+                <option th:each="index, tipeBarang: ${listTipeBarang}"
+                        th:value="${tipeBarang.index} + 1" th:text="${tipeBarang.current}"></option>
+            </select>
+            <br><br>
+            <span class="error" th:if="${#fields.hasErrors('tipeBarang')}" th:errors="*{tipeBarang}"></span>
+
+            Harga: <br>
+            <input required class="form-control" type="number" th:field="*{hargaBarang}" />
+            <br><br>
+            <span class="error" th:if="${#fields.hasErrors('hargaBarang')}" th:errors="*{hargaBarang}"></span>
+
+            <a class="btn btn-danger" href="/barang">Batal</a>
+            <button class="btn btn-primary" type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
