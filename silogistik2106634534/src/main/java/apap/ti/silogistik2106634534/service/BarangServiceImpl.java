@@ -1,6 +1,7 @@
 package apap.ti.silogistik2106634534.service;
 
 import java.util.List;
+import java.util.ArrayList; 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -70,5 +71,4 @@ public class BarangServiceImpl implements BarangService{
                 return "Tipe Barang Salah";
         }
     }
-    
 }

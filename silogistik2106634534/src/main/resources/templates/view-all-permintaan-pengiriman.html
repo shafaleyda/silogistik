@@ -30,6 +30,7 @@
                 <th>Nama Penerima</th>
                 <th>Alamat Penerima</th>
                 <th>Tanggal Pengiriman</th>
+                <th>Status</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -42,8 +43,13 @@
                 <td th:text="${permintaanPengiriman.alamatPenerima}"></td>
                 <td th:text="${permintaanPengiriman.tanggalPengiriman}"></td>
                 <td class="text-center">
+                    <span class="badge bg-danger" th:if="${#bools.isTrue(permintaanPengiriman.isCancelled)}">Canceled</span></h3>
+                    <span class="badge bg-success" th:unless="${#bools.isTrue(permintaanPengiriman.isCancelled)}">Request</span></h3>
+                </td>
+                <td class="text-center">
                     <a type="button" class="btn btn-md btn-secondary" th:href="@{/permintaan-pengiriman/{id}(id=${permintaanPengiriman.idPermintaanPengiriman})}">Detail</a>
                 </td>
+
             </tr>
         </tbody>
     </table>
